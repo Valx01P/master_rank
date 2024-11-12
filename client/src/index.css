@@ -8,12 +8,23 @@
   background-color: cornsilk;
 } */
 
+.light {
+  background-color: white;
+}
+
 .prose {
   /* height: 800px; */
-  background-color: antiquewhite;
+  background-color: white;
   overflow: auto;
   border-right: 1px solid #e2e8f0;
+  /* scrollbar-gutter: stable; */
+}
+
+.resizeContainer {
   scrollbar-gutter: stable;
+  scrollbar-width: normal;
+  scrollbar-color: #2b4669 #03090c;
+  /* scrollbar-color: #a0aec0 #edf2f7; */
 }
 
 /* Remove background and border for inline code */

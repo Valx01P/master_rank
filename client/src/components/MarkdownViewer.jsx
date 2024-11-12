@@ -6,6 +6,23 @@ import { materialDark } from 'react-syntax-highlighter/dist/esm/styles/prism'
 
 const MarkdownViewer = ({ filePath }) => {
   const [markdownContent, setMarkdownContent] = useState('')
+  const [size, setSize] = useState('medium') // Add size state
+
+  // Define size classes for prose and code
+  const sizeStyles = {
+    small: {
+      prose: 'prose-sm', // tailwind prose-sm
+      code: '0.695rem' // 0.675rem for code font size
+    },
+    medium: {
+      prose: 'prose-base', // tailwind default prose
+      code: '0.775rem' // 0.775rem for code font size
+    },
+    large: {
+      prose: 'prose-lg', // tailwind prose-lg
+      code: '0.875rem' // 0.875rem for code font size
+    }
+  }
 
   useEffect(() => {
     fetch(filePath)
@@ -15,9 +32,30 @@ const MarkdownViewer = ({ filePath }) => {
     }, [filePath])
 
   return (
-    <ResizablePanel direction="right" className="bg-white" initialWidth={40}>
+    <ResizablePanel direction="right" className="light" initialWidth={40}>
+
+      {/* Add size controls */}
+      <div className="sticky top-0 z-10 bg-white border-b border-gray-200 px-4 py-2">
+        <div className="flex items-center space-x-2">
+          <span className="text-sm text-gray-500">Size:</span>
+          {Object.keys(sizeStyles).map((sizeOption) => (
+            <button
+              key={sizeOption}
+              onClick={() => setSize(sizeOption)}
+              className={`px-3 py-1 text-sm rounded-md transition-colors
+                ${size === sizeOption 
+                  ? 'bg-blue-500 text-white' 
+                  : 'bg-gray-100 hover:bg-gray-200 text-gray-700'
+                }`}
+            >
+              {sizeOption.charAt(0).toUpperCase() + sizeOption.slice(1)}
+            </button>
+          ))}
+        </div>
+      </div>
+
       <div className="flex items-start">
-        <div className="prose prose-lg max-w-none p-4">
+        <div className={`prose ${sizeStyles[size].prose} max-w-none p-4`}>
           <ReactMarkdown
             children={markdownContent}
             components={{
@@ -32,7 +70,7 @@ const MarkdownViewer = ({ filePath }) => {
                   PreTag="div"
                   {...props}
                   customStyle={{
-                    fontSize: '0.875rem', // adjust font size for readability
+                    fontSize: sizeStyles[size].code, // adjust font size for readability, 0.875
                     padding: '0.5rem', // add padding for a cleaner look
                     borderRadius: '0.25rem', // rounded corners
                   }}

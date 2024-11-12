@@ -116,7 +116,7 @@ const ResizablePanel = ({
         minWidth: '50px',
         minHeight: '50px'
       }}
-      className={className}
+      className={`resizeContainer ${className}`}
     >
       <div className="w-full h-full overflow-auto">
         {children}

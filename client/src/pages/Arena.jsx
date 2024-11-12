@@ -1,6 +1,6 @@
 import MarkdownViewer from '../components/MarkdownViewer';
 import React, {useState} from 'react'
-import Editor from '../components/Editor';
+import CodeEditor from '../components/CodeEditor';
 
 const Arena = () => {
   const [filePath, setFilePath] = useState('/question.md')
@@ -26,7 +26,7 @@ const Arena = () => {
       </nav>
       <main className='flex-1 flex overflow-hidden'>
         <MarkdownViewer filePath={filePath}/>
-        <Editor/>
+        <CodeEditor />
       </main>
     </div>
   )
