@@ -24,7 +24,7 @@ const CodeEditor = () => {
     <div className="flex-1 flex flex-col">
       <main className="bg-slate-800 flex-1 h-[75%] relative">
       <nav className="h-[50px] flex flex-row align-middle p-[5px]">
-        <LanguageSelector language={language} setLanguage={setLanguage}/>
+        <LanguageSelector language={language} onSelect={onSelect}/>
         <btn className="p-[20px] bg-slate-800 flex items-center">Run Code</btn>
       </nav>
       <div className="absolute inset-0 top-[50px] w-full h-full">
