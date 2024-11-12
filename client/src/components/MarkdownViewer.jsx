@@ -44,7 +44,7 @@ const MarkdownViewer = ({ filePath }) => {
               onClick={() => setSize(sizeOption)}
               className={`px-3 py-1 text-sm rounded-md transition-colors
                 ${size === sizeOption 
-                  ? 'bg-blue-500 text-white' 
+                  ? 'bg-slate-700 text-white' 
                   : 'bg-gray-100 hover:bg-gray-200 text-gray-700'
                 }`}
             >
