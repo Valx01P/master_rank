@@ -35,9 +35,8 @@ Example Usage:
     print(bacon_number(bacon_network, "Tom Cruise"))
 ```
 
-```python
 Example Output:
-
+```python
     5
     1
 ```

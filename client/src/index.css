@@ -2,27 +2,95 @@
 @tailwind components;
 @tailwind utilities;
 
+/* 
+.prose {
+  background-color: antiquewhite;
+  background-color: cornsilk;
+} */
 
+.prose {
+  /* height: 800px; */
+  background-color: antiquewhite;
+  overflow: auto;
+  border-right: 1px solid #e2e8f0;
+  scrollbar-gutter: stable;
+}
 
 /* Remove background and border for inline code */
 .prose code {
-    background-color: transparent !important;
-    color: inherit !important;
-    border: none !important;
-    padding: 0 !important;
-    box-shadow: none !important;
-  }
-  
-  /* Remove background and border for code blocks */
-  .prose pre {
-    background-color: transparent !important;
-    border: none !important;
-    box-shadow: none !important;
-  }
-  
-  .prose pre code {
-    background-color: transparent !important;
-    border: none !important;
-    padding: 0 !important;
-    box-shadow: none !important;
-  }
+  /* background-color: transparent !important; */
+  color: inherit !important;
+  border: none !important;
+  padding: 0 !important;
+  box-shadow: none !important;
+}
+
+/* Remove background and border for code blocks */
+.prose pre {
+  background-color: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+.prose pre code {
+  background-color: transparent !important;
+  border: none !important;
+  padding: 0 !important;
+  box-shadow: none !important;
+}
+
+.resizable-panel {
+  position: relative;
+  overflow: hidden;
+}
+
+.resizer {
+  background-color: #efefef;
+  opacity: 0.5;
+  position: absolute;
+  transition: opacity 0.3s ease;
+}
+
+.resizer.horizontal {
+  cursor: ew-resize;
+  height: 100%;
+  right: 0;
+  top: 0;
+  width: 8px;
+}
+
+.resizer.vertical {
+  cursor: ns-resize;
+  width: 100%;
+  bottom: 0;
+  left: 0;
+  height: 8px;
+}
+.resizer.active,
+.resizer:hover {
+  opacity: 1;
+}
+.resizer.horizontal:hover::after {
+  content: "";
+  position: absolute;
+  height: 25px;
+  width: 2px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-right: 2px solid #efefef;
+  border-left: 1px solid #efefef;
+}
+.resizer.vertical:hover::after {
+  content: "";
+  position: absolute;
+  height: 2px;
+  width: 25px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-bottom: 2px solid #efefef;
+  border-top: 1px solid #efefef;
+}
