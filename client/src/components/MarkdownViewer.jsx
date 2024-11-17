@@ -80,7 +80,7 @@ const MarkdownViewer = ({ filePath }) => {
               )
               :
               (
-                <code className={`${className} p-1 bg-gray-100 rounded`} {...props}>
+                <code className={`${className} p-1 rounded`} {...props}>
                 {children}
                 </code>
               )

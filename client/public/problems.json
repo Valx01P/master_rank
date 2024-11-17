@@ -1,0 +1,13 @@
+{
+  "problems": {
+    "codepath_problems": [
+      {"id": "TIP101_U1_S1_PS1_P1", "course": "TIP101", "unit": 1, "section": 1, "problem_set": 1, "problem": 1, "topic": "strings", "difficulty": "easy", "path": "/problems/TIP101/U1/S1/PS1/P1.md"}
+    ],
+    "technical_interview_problems": [
+      {"id": "TIPX_1", "topic": "strings", "difficulty": "easy", "path": "/problems/TIPX/1.md"}
+    ],
+    "custom_problems": [
+      {"id": "CUST1", "topic": "strings", "difficulty": "easy", "path": "/problems/CUST1.md"}
+    ]
+  }
+}

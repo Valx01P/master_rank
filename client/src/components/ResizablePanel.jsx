@@ -114,7 +114,7 @@ const ResizablePanel = ({
         width: isHorizontal ? `${dimensions.width}%` : '100%',
         height: isVertical ? `${dimensions.height}%` : '100%',
         minWidth: '50px',
-        minHeight: '50px'
+        minHeight: '50px',
       }}
       className={`resizeContainer ${className}`}
     >

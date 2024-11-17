@@ -1,13 +1,17 @@
-import EditorOutput from "./EditorOutput"
 import { Editor } from "@monaco-editor/react"
 import LanguageSelector from "./LanguageSelector"
 import { useRef, useState } from "react"
 import { CODE_SNIPPETS } from "../constants"
+import { executeCode } from "../api/pistonApi"
+import ResizablePanel from "./ResizablePanel"
 
 const CodeEditor = () => {
   const editorRef = useRef()
   const [value, setValue] = useState("")
   const [language, setLanguage] = useState("python")
+  const [output, setOutput] = useState(null)
+  const [loading, setLoading] = useState(false)
+  const [error, setError] = useState(false)
 
   const onMount = (editor) => {
     editorRef.current = editor
@@ -19,13 +23,34 @@ const CodeEditor = () => {
     setValue(CODE_SNIPPETS[language])
   }
 
+  const runCode = async () => {
+    const sourceCode = editorRef.current.getValue()
+    if (!sourceCode) return
+    try {
+      setLoading(true)
+      const { run: result } = await executeCode(language, sourceCode)
+      setOutput(result.output.split("\n"))
+      result.stderr ? setError(true) : setError(false)
+    } catch (error) {
+      console.log(error)
+      setError(true)
+    } finally {
+      setLoading(false)
+    }
+  }
+
 
   return (
     <div className="flex-1 flex flex-col">
       <main className="bg-slate-800 flex-1 h-[75%] relative">
       <nav className="h-[50px] flex flex-row align-middle p-[5px]">
         <LanguageSelector language={language} onSelect={onSelect}/>
-        <btn className="p-[20px] bg-slate-800 flex items-center">Run Code</btn>
+        <button
+              onClick={runCode}
+              className="px-4 py-2 bg-slate-800 text-white rounded-md hover:bg-slate-700"
+            >
+              Run Code
+            </button>
       </nav>
       <div className="absolute inset-0 top-[50px] w-full h-full">
         <Editor
@@ -69,7 +94,20 @@ const CodeEditor = () => {
           />
         </div>
       </main>
-      <EditorOutput/>
+      <ResizablePanel direction="top" className="bg-slate-600 z-50" initialHeight={30}>
+        <div className="p-4">
+          <h1>Editor Output</h1>
+          <div className="flex flex-col space-y-2">
+            <div className="flex flex-col space-y-2">
+              {loading && <p>Running code...</p>}
+              {error && <p className="text-red-500">An error occurred. Please check your code.</p>}
+              {output && output.map((line, index) => (
+                <p key={index} className="text-gray-200">{line}</p>
+              ))}
+            </div>
+          </div>
+        </div>
+      </ResizablePanel>
     </div>
   )
 }

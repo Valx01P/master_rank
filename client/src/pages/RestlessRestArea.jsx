@@ -1,11 +1,15 @@
 import ResizablePanel from '../components/ResizablePanel';
+import { useState } from 'react';
 
 const RestlessRestArea = () => {
 
   return (
     <div>
-      <nav></nav>
-      <main></main>
+      <main>
+        <h1 className='h-full w-full bg-card'>
+          test for themes
+        </h1>
+      </main>
     </div>
   )
 }
